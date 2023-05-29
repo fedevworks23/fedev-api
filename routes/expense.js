@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // console.log(req.body);
+  // console.log(req.body);
   const { expenseItem, expensePrice, expenseType, description, paymentMode, expenseDate } = req.body;
   const expense = new Expense({ expenseItem, expensePrice, expenseType, description, paymentMode, expenseDate });
 
