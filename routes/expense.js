@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Expense = require('../models/Expense');
+const Expense = require('../models/ExpenseSchema');
 
 router.get('/', async (req, res) => {
   // res.send('We are on expenses');
   try {
     const getAllExpenses = await Expense.find().exec();
     // console.log(getAllExpenses);
-    res.send({status: 200, data: getAllExpenses});
+    res.send({ status: 200, data: getAllExpenses });
   } catch (error) {
     res.status(500).send({ message: error });
   }
@@ -15,11 +15,8 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // console.log(req.body);
-  const expense = new Expense({
-    expenseItem: req.body.expenseItem,
-    expensePrice: req.body.expensePrice,
-    expenseType: req.body.expenseType
-  });
+  const { expenseItem, expensePrice, expenseType, description, paymentMode, expenseDate } = req.body;
+  const expense = new Expense({ expenseItem, expensePrice, expenseType, description, paymentMode, expenseDate });
 
   try {
     const saveExpenseData = await expense.save();
@@ -32,6 +29,7 @@ router.post('/', async (req, res) => {
 router.get('/:expenseId', async (req, res) => {
   try {
     const getByExpenseId = await Expense.findById(req.params.expenseId);
+    // console.log(getByExpenseId);
     res.json(getByExpenseId);
   } catch (error) {
     res.status(500).json({ message: error });

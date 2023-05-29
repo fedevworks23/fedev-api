@@ -9,14 +9,10 @@ const ExpenseSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  expenseType: {
-    type: String,
-    required: true
-  },
-  date: {
+  expenseDate: {
     type: Date,
-    default: Date.now
+    required: true
   }
 });
 
-module.exports = mongoose.model('Expenses', ExpenseSchema);
+module.exports = mongoose.model('Cards', ExpenseSchema);

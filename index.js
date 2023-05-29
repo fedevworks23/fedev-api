@@ -17,6 +17,7 @@ const user = require("./routes/user");
 const postRoute = require('./routes/posts');
 const registerRoute = require('./routes/registers');
 const expenseRoute = require('./routes/expense');
+const cardRoute = require('./routes/cards');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
@@ -29,8 +30,9 @@ app.use(function (req, res, next) {
 // Use of Router's
 app.use("/user", user);
 app.use('/posts', postRoute);
-app.use('/expense', expenseRoute);
 app.use('/register', registerRoute);
+app.use('/expense', expenseRoute);
+app.use('/cards', cardRoute);
 
 app.get('/', (req, res) => {
   console.log(req);
