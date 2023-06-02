@@ -17,7 +17,8 @@ const user = require("./routes/user");
 const postRoute = require('./routes/posts');
 const registerRoute = require('./routes/registers');
 const expenseRoute = require('./routes/expense');
-const cardRoute = require('./routes/cards');
+const expenseV2 = require('./routes/expense-V2');
+const labels = require('./routes/labels');
 
 // app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
@@ -31,11 +32,12 @@ app.use(function (req, res, next) {
 app.use("/user", user);
 app.use('/posts', postRoute);
 app.use('/register', registerRoute);
-app.use('/expense', expenseRoute);
-app.use('/cards', cardRoute);
+app.use('/expenseV1', expenseRoute);
+app.use('/expenseV2', expenseV2);
+app.use('/labels', labels);
 
 app.get('/', (req, res) => {
-  console.log(req);
+  console.log(req.body);
   res.send('API Working');
 });
 
